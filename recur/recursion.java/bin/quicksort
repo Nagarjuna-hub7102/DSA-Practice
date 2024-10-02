@@ -1,0 +1,90 @@
+/* import java.io.*;
+public class Sort{
+    static int partition(int[]arr,int low,int high){
+        int i = (low-1);
+        int pivot = arr[high];
+        for (int j = 0; j<high; j++) {
+            if(arr[j]<pivot){
+                i++;
+                swap(arr,i,j);
+            }
+            
+        }
+         swap(arr,i+1,high);
+        return (i+1);
+    }
+    static void swap(int[]arr,int a,int b){
+        int temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
+    }
+    Public static void Quicksort(int[]arr,int low,int high){
+        if(low <= high){
+            int pi = partition(arr,low,high);
+            quicksort(arr,low,pi-1);
+            quicksort(arr,pi+1,high);
+        }
+        public static void Print(int[]arr){
+           for (var i = 0; i < array.length; i++) {
+               System.out.print(arr[i]+" ");
+               
+           }
+        }
+        
+    }
+    
+    
+    public static void main(String[] args) {
+        int[] arr = { 8, 2, 6, 5, 4};
+        int N = arr.length;
+        quicksort(arr,0,N-1);
+        print(int[]arr);
+    }
+} */
+import java.util.Arrays;
+
+public class QuickSort {
+    public static void main(String[] args) {
+        int[] arr = {5, 4, 3, 2, 1};
+        sort(arr, 0, arr.length - 1);
+        System.out.println(Arrays.toString(arr));
+        Arrays.sort(arr);
+    }
+
+    static void sort(int[] nums, int low, int hi) {
+        if (low >= hi) {
+            return;
+        }
+
+        int s = low;
+        int e = hi;
+        int m = s + (e - s) / 2;
+        int pivot = nums[m];
+
+        while (s <= e) {
+
+            // also a reason why if its already sorted it will not swap
+            while (nums[s] < pivot) {
+                s++;
+            }
+            while (nums[e] > pivot) {
+                e--;
+            }
+
+            if (s <= e) {
+                int temp = nums[s];
+                nums[s] = nums[e];
+                nums[e] = temp;
+                s++;
+                e--;
+            }
+        }
+
+        // now my pivot is at correct index, please sort two halves now
+        sort(nums, low, e);
+        sort(nums, s, hi);
+    }
+
+
+
+
